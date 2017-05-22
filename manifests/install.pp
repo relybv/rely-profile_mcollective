@@ -17,7 +17,11 @@ class profile_mcollective::install {
 
   if $profile_mcollective::monitor_address == 'localhost' {
     notify {'Installing rabbitmq as middleware':}
-    class { 'rabbitmq':
+    class { '::rabbitmq':
+      delete_guest_user => true,
+      config_stomp      => true,
+      stomp_ensure      => true,
+      stomp_port        => 61613,
     }
   }
 
