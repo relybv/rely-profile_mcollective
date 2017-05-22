@@ -16,4 +16,5 @@ class profile_mcollective::install {
   notify {"Mco middleware address ${profile_mcollective::monitor_address} ":}
 
 
+  ensure_packages({'puppet-agent' => { ensure => 'present' }})
 }

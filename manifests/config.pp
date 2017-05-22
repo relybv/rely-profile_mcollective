@@ -8,4 +8,11 @@ class profile_mcollective::config {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
+  file { '/etc/puppetlabs/mcollective/server.cfg':
+    content => template('profile_mcollective/server.cfg.erb'),
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    notify  => Service['mcollective'],
+  }
 }

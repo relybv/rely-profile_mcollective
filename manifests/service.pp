@@ -9,4 +9,7 @@ class profile_mcollective::service {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
+  service { 'mcollective':
+    ensure => running,
+  }
 }
