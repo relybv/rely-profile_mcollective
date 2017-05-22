@@ -23,11 +23,11 @@ describe 'profile_mcollective class' do
       end
     end
 
-    describe package('filebeat') do
+    describe package('puppet-agent') do
       it { is_expected.to be_installed }
     end
 
-    describe service('filebeat') do
+    describe service('mcollective') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
     end
