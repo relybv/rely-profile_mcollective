@@ -4,6 +4,7 @@ fixtures:
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
       ref: "4.13.1"
     apt : "https://github.com/puppetlabs/puppetlabs-apt.git"
+    activemq: "https://github.com/puppetlabs/puppetlabs-activemq.git"
 
 # profile module layout, default include ntp module
     rspec_monitor: "git://github.com/pgomersbach/test-rspec_monitor.git"

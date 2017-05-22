@@ -15,6 +15,12 @@ class profile_mcollective::install {
   }
   notify {"Mco middleware address ${profile_mcollective::monitor_address} ":}
 
+  if $profile_mcollective::monitor_address == 'localhost' {
+    notify {'Installing activemq as middleware':}
+    class { 'activemq':
+      server_config => template('profile_mcollective/activemq.xml.erb'),
+    }
+  }
 
   ensure_packages({'puppet-agent' => { ensure => 'present' }})
 
