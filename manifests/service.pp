@@ -10,7 +10,7 @@ class profile_mcollective::service {
   }
 
   exec {'mcollective':
-    command => '/bin/systemctl stop mcollective; /bin/systemctl start mcollective; /bin/systemctl status mcollective.service',
+    command => '/usr/sbin/service mcollective stop; /usr/sbin/service mcollective start',
     creates => '/var/run/puppetlabs/mcollective.pid',
   }
 }
