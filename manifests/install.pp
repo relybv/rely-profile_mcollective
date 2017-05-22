@@ -17,4 +17,5 @@ class profile_mcollective::install {
 
 
   ensure_packages({'puppet-agent' => { ensure => 'present' }})
+
 }

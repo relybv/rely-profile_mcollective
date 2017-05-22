@@ -14,6 +14,7 @@ describe 'profile_mcollective class' do
       # Using puppet_apply as a helper
       it 'should work idempotently with no errors' do
         pp = <<-EOS
+        $monitor_address = 'localhost'
         class { 'profile_mcollective': }
         EOS
 

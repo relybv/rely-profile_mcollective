@@ -13,6 +13,6 @@ class profile_mcollective::config {
     owner   => root,
     group   => root,
     mode    => '0644',
-    notify  => Service['mcollective'],
+    notify  => Exec['mcollective'],
   }
 }
