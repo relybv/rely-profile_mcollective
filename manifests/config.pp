@@ -16,6 +16,13 @@ class profile_mcollective::config {
     notify  => Exec['mcollective'],
   }
 
+  file { '/etc/puppetlabs/mcollective/client.cfg':
+    content => template('profile_mcollective/client.cfg.erb'),
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+  }
+
   rabbitmq_vhost { 'mcollective':
     ensure => present,
   }
