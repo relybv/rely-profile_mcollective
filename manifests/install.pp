@@ -17,7 +17,7 @@ class profile_mcollective::install {
 
   if $profile_mcollective::monitor_address == 'localhost' {
     notify {'Installing rabbitmq as middleware':}
-    class { '::rabbitmq':
+    class {'::rabbitmq':
       delete_guest_user => true,
       config_stomp      => true,
       stomp_ensure      => true,
@@ -26,6 +26,11 @@ class profile_mcollective::install {
   }
 
   ensure_packages({'puppet-agent' => { ensure => 'present' }})
+  ensure_packages({'mcollective-plugins-service' => { ensure => 'present' }})
   ensure_packages({'python' => { ensure => 'present' }})
 
+  file {'/opt/puppetlabs/mcollective/plugins/mcollective/':
+    source  => 'puppet:///modules/profile_mcollective/plugins/',
+    recurse => true,
+  }
 }
