@@ -15,6 +15,10 @@ class profile_mcollective::install {
   }
   notify {"Mco middleware address ${profile_mcollective::monitor_address} ":}
 
+  # create fact file
+  class {'profile_mcollective::facts':}
+
+  # install middleware to monitor server
   if $profile_mcollective::monitor_address == 'localhost' {
     notify {'Installing rabbitmq as middleware':}
     class {'::rabbitmq':
@@ -29,6 +33,7 @@ class profile_mcollective::install {
   ensure_packages({'mcollective-plugins-service' => { ensure => 'present' }})
   ensure_packages({'python' => { ensure => 'present' }})
 
+  # install mcollective plugins
   file {'/opt/puppetlabs/mcollective/plugins/mcollective/':
     source  => 'puppet:///modules/profile_mcollective/plugins/',
     recurse => true,
