@@ -133,6 +133,7 @@ END_OF_USAGE
         end
         if response[:data][:exitcode] != 0
           puts "exitcode: #{response[:data][:exitcode]}"
+          exit 1
         end
         puts ""
       else
