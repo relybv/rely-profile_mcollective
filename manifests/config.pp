@@ -23,6 +23,12 @@ class profile_mcollective::config {
     mode    => '0644',
   }
 
+  cron { 'ckeck mco connection':
+    command => "if ! /usr/local/bin/mco ping | grep ${::hostname}; then /usr/sbin/service mcollective restart; fi;",
+    user    => 'root',
+    minute  => '*/1',
+  }
+
   if $profile_mcollective::monitor_address == 'localhost' {
     rabbitmq_vhost { 'mcollective':
       ensure => present,
