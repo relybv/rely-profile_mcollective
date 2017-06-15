@@ -24,9 +24,10 @@ class profile_mcollective::config {
   }
 
   cron { 'ckeck mco connection':
-    command => "if ! /usr/local/bin/mco ping | grep ${::hostname}; then /usr/sbin/service mcollective restart; fi;",
-    user    => 'root',
-    minute  => '*/1',
+    command     => "if ! /usr/local/bin/mco ping | grep ${::hostname}; then /usr/sbin/service mcollective restart; fi;",
+    environment => 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/puppetlabs/bin',
+    user        => 'root',
+    minute      => '*/1',
   }
 
   if $profile_mcollective::monitor_address == 'localhost' {
