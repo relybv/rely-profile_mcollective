@@ -13,14 +13,12 @@ class profile_mcollective::install {
   } else {
     $monitor_address = $profile_mcollective::monitor_address
   }
-  notify {"Mco middleware address ${profile_mcollective::monitor_address} ":}
 
   # create fact file
   class {'profile_mcollective::facts':}
 
   # install middleware to monitor server
   if $profile_mcollective::monitor_address == 'localhost' {
-    notify {'Installing rabbitmq as middleware':}
     class {'::rabbitmq':
       delete_guest_user => true,
       config_stomp      => true,

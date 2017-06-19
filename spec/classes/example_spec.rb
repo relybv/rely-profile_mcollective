@@ -20,6 +20,31 @@ describe 'profile_mcollective' do
           it { is_expected.to contain_class('profile_mcollective::config') }
           it { is_expected.to contain_class('profile_mcollective::service') }
           it { is_expected.to contain_class('profile_mcollective::params') }
+          it { is_expected.to contain_class('profile_mcollective::facts') }
+
+          it { is_expected.to contain_cron('ckeck mco connection') }
+
+          it { is_expected.to contain_exec('mcollective') }
+
+          it { is_expected.to contain_file('/etc/puppetlabs/mcollective/client.cfg') }
+          it { is_expected.to contain_file('/etc/puppetlabs/mcollective/facts.yaml') }
+          it { is_expected.to contain_file('/etc/puppetlabs/mcollective/server.cfg') }
+          it { is_expected.to contain_file('/opt/puppetlabs/mcollective/plugins/mcollective/') }
+
+          it { is_expected.to contain_package('mcollective-plugins-service') }
+          it { is_expected.to contain_package('puppet-agent') }
+          it { is_expected.to contain_package('python') }
+
+          it { is_expected.to contain_rabbitmq_exchange('mcollective_broadcast@mcollective') }
+          it { is_expected.to contain_rabbitmq_exchange('mcollective_directed@mcollective') }
+
+          it { is_expected.to contain_rabbitmq_user('admin') }
+          it { is_expected.to contain_rabbitmq_user('mcollective') }
+
+          it { is_expected.to contain_rabbitmq_user_permissions('admin@mcollective') }
+          it { is_expected.to contain_rabbitmq_user_permissions('mcollective@mcollective') }
+
+          it { is_expected.to contain_rabbitmq_vhost('mcollective') }
 
         end
       end
