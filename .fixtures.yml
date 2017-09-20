@@ -7,6 +7,7 @@ fixtures:
     rabbitmq: "https://github.com/puppetlabs/puppetlabs-rabbitmq.git"
     staging: "git://github.com/voxpupuli/puppet-staging.git"
     erlang: "git://github.com/garethr/garethr-erlang.git"
+    archive: "https://github.com/voxpupuli/puppet-archive.git"
 
 # profile module layout, default include ntp module
     rspec_monitor: "git://github.com/pgomersbach/test-rspec_monitor.git"
